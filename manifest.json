@@ -1,0 +1,47 @@
+{
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    },
+    {
+      "js": [
+        "dict-close.js"
+      ],
+      "matches": [
+        "https://www.collinsdictionary.com/dictionary/english*"
+      ]
+    }
+  ],
+  "description": "Select English words to look up definitions in Collins Cobuild Learner's Dictionary.",
+  "host_permissions": [
+    "https://www.collinsdictionary.com/*"
+  ],
+  "icons": {
+    "128": "icons/icon128.png",
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png"
+  },
+  "manifest_version": 3,
+  "name": "Collins Hover Dictionary",
+  "permissions": [
+    "scripting",
+    "storage",
+    "windows"
+  ],
+  "version": "1.0.0",
+  "options_page": "options.html"
+}

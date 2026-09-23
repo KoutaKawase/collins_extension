@@ -1,0 +1,19 @@
+#collins-trigger {
+  position: absolute;
+  z-index: 2147483647;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+#collins-trigger:hover {
+  background: #f0f0f0;
+}
