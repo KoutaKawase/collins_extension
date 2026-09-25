@@ -1,4 +1,10 @@
 import type { ExtensionMessage } from "./shared/messages";
+import { BASE } from "./shared/messages";
+
+// Dict popup itself also matches <all_urls>, so content.js runs inside it.
+// Clicks inside the popup must never ask background to close it.
+const isDictPage: boolean =
+  typeof location !== "undefined" && location.href.startsWith(BASE);
 
 let triggerEl: HTMLDivElement | null = null;
 
@@ -46,6 +52,7 @@ function showTrigger(x: number, y: number, word: string): void {
 }
 
 document.addEventListener("mouseup", (e) => {
+  if (isDictPage) return;
   if (triggerEl && triggerEl.contains(e.target as Node)) return;
   setTimeout(() => {
     const word = getSelectedWord();
@@ -70,6 +77,7 @@ document.addEventListener("mouseup", (e) => {
 });
 
 document.addEventListener("mousedown", (e) => {
+  if (isDictPage) return;
   if (triggerEl && !triggerEl.contains(e.target as Node)) removeTrigger();
   // Close hover window on outside click; background ignores if none open.
   sendMessage({ type: "CLOSE_DICT" });
